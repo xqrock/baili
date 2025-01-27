@@ -29,6 +29,9 @@ sed -i '/"mediatek"\/\*|\"mvebu"\/\*/{n; s/.*/\tcpu_freq="2.0GHz" ;;/}' package/
 rm -rf ./feeds/packages/net/adguardhome
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/packages/net/alist
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/shadowsocks-rust
+rm -rf ./feeds/packages/net/shadowsocksr-libev
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 rm -rf ./feeds/luci/applications/luci-app-alist
