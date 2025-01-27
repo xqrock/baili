@@ -26,6 +26,9 @@ sed -i '/myddns_ipv4/,$d' feeds/packages/net/ddns-scripts/files/etc/config/ddns
 ##-----------------Manually set CPU frequency for MT7986A-----------------
 sed -i '/"mediatek"\/\*|\"mvebu"\/\*/{n; s/.*/\tcpu_freq="2.0GHz" ;;/}' package/emortal/autocore/files/generic/cpuinfo
 ##-----------------DIY-----------------
+rm -rf ./feeds/packages/net/adguardhome
+rm -rf ./feeds/packages/net/mosdns
+rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-alist
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus
