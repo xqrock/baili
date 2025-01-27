@@ -30,6 +30,7 @@ rm -rf ./feeds/packages/net/adguardhome
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-passwall
+rm -rf ./feeds/luci/applications/luci-app-passwall2
 rm -rf ./feeds/luci/applications/luci-app-alist
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus
 rm -rf ./feeds/luci/applications/luci-app-openclash
