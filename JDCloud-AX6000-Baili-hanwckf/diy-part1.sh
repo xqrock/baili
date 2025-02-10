@@ -44,3 +44,5 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-adguardhome
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/adguardhome
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wrtbwmon
