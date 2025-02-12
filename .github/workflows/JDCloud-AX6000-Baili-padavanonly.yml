@@ -35,6 +35,7 @@ env:
   OPENWRT_NAME: immortalwrt
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-23.05
   REPO_BRANCH: openwrt-23.05
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 2305.config
   DIY_P1_SH: 2305part1.sh
   DIY_P2_SH: 2305part2.sh
