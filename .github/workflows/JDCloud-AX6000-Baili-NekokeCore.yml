@@ -35,6 +35,7 @@ env:
   OPENWRT_NAME: immortalwrt
   REPO_URL: https://github.com/NekokeCore/immortalwrt-mt798x-24.10
   REPO_BRANCH: openwrt-24.10
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 2410.config
   DIY_P1_SH: 2410part1.sh
   DIY_P2_SH: 2410part2.sh
