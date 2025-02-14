@@ -39,7 +39,7 @@ env:
   CONFIG_FILE: 2410.config
   DIY_P1_SH: 2410part1.sh
   DIY_P2_SH: 2410part2.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
