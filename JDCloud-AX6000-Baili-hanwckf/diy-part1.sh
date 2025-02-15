@@ -30,8 +30,8 @@ function drop_package(){
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 #git clone https://github.com/messense/aliyundrive-webdav package/messense
 # git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-# git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
+git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/luci-app-advanced
