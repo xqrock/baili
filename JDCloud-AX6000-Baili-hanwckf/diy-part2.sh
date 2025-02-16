@@ -25,6 +25,8 @@ rm -rf ./feeds/packages/net/shadowsocks-rust
 rm -rf ./feeds/packages/net/shadowsocksr-libev
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
+rm -rf feeds/packages/net/xray-core/
+rm -rf feeds/packages/net/xray-plugin/
 rm -rf ./feeds/luci/applications/luci-app-alist
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus
 rm -rf ./feeds/luci/applications/luci-app-openclash
