@@ -13,6 +13,18 @@
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
+function merge_package(){
+    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
+    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
+    # find package/ -follow -name $pkg -not -path "package/custom/*" | xargs -rt rm -rf
+    git clone --depth=1 --single-branch $1
+    mv $2 package/custom/
+    rm -rf $repo
+}
+function drop_package(){
+    find package/ -follow -name $1 -not -path "package/custom/*" | xargs -rt rm -rf
+}
+
 
 # Add a feed source
 # echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
@@ -33,3 +45,6 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-adguardhome
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/adguardhome
+merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/wrtbwmon
+merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/luci-app-wrtbwmon
+merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-istorex
