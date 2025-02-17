@@ -48,4 +48,3 @@ merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-
 merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/adguardhome
 merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/wrtbwmon
 merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/luci-app-wrtbwmon
-merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-istorex
