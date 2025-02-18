@@ -27,6 +27,15 @@ if [ -f "$PW_FILE" ]; then
 	cd $PKG_PATH && echo "passwall has been fixed!"
 fi
 
+SP_FILE=$(find ./ -maxdepth 3 -type f -wholename "*/luci-app-ssr-plus/Makefile")
+if [ -f "$SP_FILE" ]; then
+	sed -i '/default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev/,/libev/d' $SP_FILE
+	sed -i '/config PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR/,/x86_64/d' $SP_FILE
+	sed -i '/Shadowsocks_NONE/d; /Shadowsocks_Libev/d; /ShadowsocksR/d' $SP_FILE
+
+	cd $PKG_PATH && echo "ssr-plus has been fixed!"
+fi
+
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 ##-----------------Del duplicate packages------------------
