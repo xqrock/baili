@@ -27,13 +27,6 @@ rm -rf ./feeds/luci/applications/luci-app-lucky
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-#修复Coremark编译失败
-CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
-if [ -f "$CM_FILE" ]; then
-	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
-
-	cd $PKG_PATH && echo "coremark has been fixed!"
-fi
 
 #移除Shadowsocks组件
 PW_FILE=$(find ./ -maxdepth 3 -type f -wholename "*/luci-app-passwall/Makefile")
@@ -64,4 +57,19 @@ if [[ $WRT_BRANCH != *"21"* ]]; then
 	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
 	echo "CONFIG_PACKAGE_luci-app-nikki=y" >> ./.config
 	echo "CONFIG_PACKAGE_luci-app-upnp-mtk-adjust=y" >> ./.config
+fi
+#修复TailScale配置文件冲突
+TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+if [ -f "$TS_FILE" ]; then
+	sed -i '/\/files/d' $TS_FILE
+
+	cd $PKG_PATH && echo "tailscale has been fixed!"
+fi
+
+#修复Coremark编译失败
+CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
+if [ -f "$CM_FILE" ]; then
+	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
+
+	cd $PKG_PATH && echo "coremark has been fixed!"
 fi
