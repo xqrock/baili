@@ -24,6 +24,7 @@ rm -rf ./feeds/packages/net/mosdns
 # rm -rf ./feeds/luci/applications/luci-app-passwall2
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus
 
+
 #移除Shadowsocks组件
 PW_FILE=$(find ./ -maxdepth 3 -type f -wholename "*/luci-app-passwall/Makefile")
 if [ -f "$PW_FILE" ]; then
@@ -43,17 +44,6 @@ if [ -f "$SP_FILE" ]; then
 	cd $PKG_PATH && echo "ssr-plus has been fixed!"
 fi
 
-#非21.02专用
-if [[ $WRT_BRANCH != *"21"* ]]; then
-	sed -i '/miniupnpd/d; /luci-app-upnp/d' ./.config
-
-	echo "CONFIG_PACKAGE_luci-app-upnp=n" >> ./.config
-	echo "CONFIG_PACKAGE_miniupnpd=n" >> ./.config
-
-	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
-	echo "CONFIG_PACKAGE_luci-app-nikki=y" >> ./.config
-	echo "CONFIG_PACKAGE_luci-app-upnp-mtk-adjust=y" >> ./.config
-fi
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
 if [ -f "$TS_FILE" ]; then
