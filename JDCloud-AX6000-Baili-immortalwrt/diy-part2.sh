@@ -22,7 +22,8 @@ rm -rf ./feeds/packages/net/mosdns
 # rm -rf ./feeds/luci/applications/luci-app-passwall
 # rm -rf ./feeds/luci/applications/luci-app-passwall2
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus
-
+cp -af ./feeds/mtk_openwrt_feed/master/files/* .
+for file in $(find ./feeds/mtk_openwrt_feed/master/patches-base -name "*.patch" | sort); do patch -f -p1 -i ${file}; done
 
 #移除Shadowsocks组件
 PW_FILE=$(find ./ -maxdepth 3 -type f -wholename "*/luci-app-passwall/Makefile")
