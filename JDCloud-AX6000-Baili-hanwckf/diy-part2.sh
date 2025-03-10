@@ -28,23 +28,6 @@ if [ -f "$SP_FILE" ]; then
 	cd $PKG_PATH && echo "ssr-plus has been fixed!"
 fi
 
-#修复TailScale配置文件冲突
-TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-if [ -f "$TS_FILE" ]; then
-	sed -i '/\/files/d' $TS_FILE
-
-	cd $PKG_PATH && echo "tailscale has been fixed!"
-fi
-
-#修复Coremark编译失败
-CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
-if [ -f "$CM_FILE" ]; then
-	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
-
-	cd $PKG_PATH && echo "coremark has been fixed!"
-fi
-
-
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 ##-----------------Del duplicate packages------------------
