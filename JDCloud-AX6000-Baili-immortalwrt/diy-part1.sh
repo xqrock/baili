@@ -32,7 +32,7 @@ function drop_package(){
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-git clone https://git.openwrt.org/openwrt/openwrt.git
+echo "src-git mtk_openwrt_feed https://git01.mediatek.com/openwrt/feeds/mtk-openwrt-feeds" >> feeds.conf.default
 git clone https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/luci-app-advanced
 git clone https://github.com/KFERMercer/luci-app-tcpdump.git package/luci-app-tcpdump
