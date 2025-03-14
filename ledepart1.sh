@@ -33,5 +33,5 @@ git clone https://github.com/sirpdboy/luci-app-advanced.git package/luci-app-adv
 git clone https://github.com/KFERMercer/luci-app-tcpdump.git package/luci-app-tcpdump
 # merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-adguardhome
 # merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/adguardhome
-# merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
-# merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wrtbwmon
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
+merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/luci-app-wrtbwmon
