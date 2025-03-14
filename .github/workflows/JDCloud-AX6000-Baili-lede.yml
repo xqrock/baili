@@ -18,6 +18,14 @@ on:
         description: 'Set LAN IP Address'
         required: true
         default: '192.168.5.1'
+      SW_DRIVER:
+        description: 'Choose Switch Driver'
+        required: true
+        default: 'GSW'
+        type: choice
+        options:
+        - GSW
+        - DSA
       NO_DOCKERMAN:
         description: 'Not build luci-app-dockerman'
         required: true
@@ -46,7 +54,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     permissions:
       contents: write
@@ -61,7 +69,13 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+        bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib g++-multilib gettext \
+        genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev \
+        libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev \
+        libreadline-dev libssl-dev libtool llvm lrzsz msmtp ninja-build p7zip p7zip-full patch pkgconf \
+        python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion \
+        swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo apt install libfuse-dev
@@ -124,6 +138,17 @@ jobs:
             echo "Set LAN IP Address: $SET_IP"
         else
             echo "Invalid IP address, use default."
+        fi
+
+    - name: 设置交换机驱动
+      run: |
+        cd openwrt
+        if [ ${{ github.event.inputs.SW_DRIVER }} == 'DSA' ]; then
+                cp $GITHUB_WORKSPACE/JDCloud-AX6000-Baili-hanwckf/mt7986a-dsa-jdcloud-re-cp-03.dts target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
+                sed -i '/jdcloud,re-cp-03)/ {n; /eth0/ {s/eth0/lan1 lan2 lan3 lan4/; n; /ucidef_add_switch/ d}}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+                echo "Use Switch Driver: DSA"
+        else
+                echo "Use Switch Driver: GSW"
         fi
 
     - name: 取消编译dockerman
