@@ -45,8 +45,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lede.config
-  DIY_P1_SH: lede-part1.sh
-  DIY_P2_SH: lede-part2.sh
+  DIY_P1_SH: ledepart1.sh
+  DIY_P2_SH: ledepart2.sh
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
