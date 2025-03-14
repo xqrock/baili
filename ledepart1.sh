@@ -31,6 +31,8 @@ function drop_package(){
 git clone https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/luci-app-advanced
 git clone https://github.com/KFERMercer/luci-app-tcpdump.git package/luci-app-tcpdump
+git clone https://github.com/linkease/istore.git package/istore
+git clone https://github.com/linkease/istore-ui.git package/istore-ui
 # merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/luci-app-adguardhome
 # merge_package https://github.com/kenzok8/openwrt-packages openwrt-packages/adguardhome
 merge_package https://github.com/kiddin9/kwrt-packages kwrt-packages/wrtbwmon
