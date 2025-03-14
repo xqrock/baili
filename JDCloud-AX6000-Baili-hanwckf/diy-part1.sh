@@ -29,7 +29,6 @@ function drop_package(){
 # Add a feed source
 # echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 # echo 'src-git  nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git' >>feeds.conf.default
-git clone https://github.com/immortalwrt/homeproxy.git package/homeproxy
 git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
 # git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
