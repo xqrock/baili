@@ -15,8 +15,8 @@
 ##-----------------Del duplicate packages------------------
 rm -rf feeds/packages/net/open-app-filter
 ##-----------------DIY-----------------
-rm -rf ./feeds/packages/net/adguardhome
-rm -rf ./feeds/packages/net/mosdns
+# rm -rf ./feeds/packages/net/adguardhome
+# rm -rf ./feeds/packages/net/mosdns
 # rm -rf ./feeds/packages/net/shadowsocks-libev
 # rm -rf ./feeds/packages/net/shadowsocks-rust
 # rm -rf ./feeds/packages/net/shadowsocksr-libev
