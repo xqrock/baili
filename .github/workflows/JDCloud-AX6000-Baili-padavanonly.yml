@@ -18,6 +18,14 @@ on:
         description: 'Set LAN IP Address'
         required: true
         default: '192.168.5.1'
+      SW_DRIVER:
+        description: 'Choose Switch Driver'
+        required: true
+        default: 'GSW'
+        type: choice
+        options:
+        - GSW
+        - DSA
       NO_DOCKERMAN:
         description: 'Not build luci-app-dockerman'
         required: true
@@ -33,12 +41,12 @@ on:
 env:
   ###############手动修改##############
   OPENWRT_NAME: padavanonly
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-23.05
-  REPO_BRANCH: openwrt-23.05
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
+  REPO_BRANCH: 2410
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 2305.config
-  DIY_P1_SH: 2305part1.sh
-  DIY_P2_SH: 2305part2.sh
+  CONFIG_FILE: padavanonly.config
+  DIY_P1_SH: padavanonlypart1.sh
+  DIY_P2_SH: padavanonlypart2.sh
   SSH_ACTIONS: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -124,6 +132,17 @@ jobs:
             echo "Set LAN IP Address: $SET_IP"
         else
             echo "Invalid IP address, use default."
+        fi
+        
+    - name: 设置交换机驱动
+      run: |
+        cd openwrt
+        if [ ${{ github.event.inputs.SW_DRIVER }} == 'DSA' ]; then
+                cp $GITHUB_WORKSPACE/JDCloud-AX6000-Baili-hanwckf/mt7986a-dsa-jdcloud-re-cp-03.dts target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
+                sed -i '/jdcloud,re-cp-03)/ {n; /eth0/ {s/eth0/lan1 lan2 lan3 lan4/; n; /ucidef_add_switch/ d}}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+                echo "Use Switch Driver: DSA"
+        else
+                echo "Use Switch Driver: GSW"
         fi
 
     - name: 取消编译dockerman
