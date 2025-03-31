@@ -26,6 +26,27 @@ rm -rf ./feeds/luci/applications/luci-app-ssr-plus
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
+#预置HomeProxy数据
+if [ -d *"homeproxy"* ]; then
+	HP_RULE="surge"
+	HP_PATH="homeproxy/root/etc/homeproxy"
+
+	rm -rf ./$HP_PATH/resources/*
+
+	git clone -q --depth=1 --single-branch --branch "release" "https://github.com/Loyalsoldier/surge-rules.git" ./$HP_RULE/
+	cd ./$HP_RULE/ && RES_VER=$(git log -1 --pretty=format:'%s' | grep -o "[0-9]*")
+
+	echo $RES_VER | tee china_ip4.ver china_ip6.ver china_list.ver gfw_list.ver
+	awk -F, '/^IP-CIDR,/{print $2 > "china_ip4.txt"} /^IP-CIDR6,/{print $2 > "china_ip6.txt"}' cncidr.txt
+	sed 's/^\.//g' direct.txt > china_list.txt ; sed 's/^\.//g' gfw.txt > gfw_list.txt
+	mv -f ./{china_*,gfw_list}.{ver,txt} ../$HP_PATH/resources/
+
+	cd .. && rm -rf ./$HP_RULE/
+
+	cd $PKG_PATH && echo "homeproxy date has been updated!"
+fi
+
+
 #移除Shadowsocks组件
 PW_FILE=$(find ./ -maxdepth 3 -type f -wholename "*/luci-app-passwall/Makefile")
 if [ -f "$PW_FILE" ]; then
