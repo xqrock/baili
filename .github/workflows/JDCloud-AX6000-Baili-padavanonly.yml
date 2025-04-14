@@ -75,13 +75,14 @@ jobs:
         large-packages: true
         docker-images: true
         swap-storage: true
-
+        
     - name: 下载固件源码
       working-directory: /workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        df -h  # 再次检查空间
 
     - name: 加载feeds.conf.default & DIY_P1_SH
       run: |
