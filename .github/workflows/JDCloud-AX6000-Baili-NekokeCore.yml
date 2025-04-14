@@ -14,6 +14,14 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
+      SW_DRIVER:
+        description: 'Choose Switch Driver'
+        required: true
+        default: 'GSW'
+        type: choice
+        options:
+        - GSW
+        - DSA
       ssh:
         description: 'SSH connection to Actions'
         required: false
@@ -109,6 +117,17 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        
+    - name: 设置交换机驱动
+      run: |
+        cd openwrt
+        if [ ${{ github.event.inputs.SW_DRIVER }} == 'DSA' ]; then
+                cp $GITHUB_WORKSPACE/JDCloud-AX6000-Baili-hanwckf/mt7986a-dsa-jdcloud-re-cp-03x.dts target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
+                sed -i '/jdcloud,re-cp-03)/ {n; /eth0/ {s/eth0/lan1 lan2 lan3 lan4/; n; /ucidef_add_switch/ d}}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+                echo "Use Switch Driver: DSA"
+        else
+                echo "Use Switch Driver: GSW"
+        fi
 
     - name: SSH链接管理
       uses: P3TERX/ssh2actions@main
